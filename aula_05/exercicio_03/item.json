@@ -1,0 +1,10 @@
+{
+    "item": "Ventilador",
+    "preco": 435,
+    "quantidade": 1005,
+    "0": {
+        "item": "Micro-ondas",
+        "preco": 545,
+        "quantidade": 225
+    }
+}

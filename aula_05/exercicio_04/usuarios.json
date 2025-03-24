@@ -1,0 +1,19 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Carlos da Shell",
+      "email": "carlinhos@gmail.com"
+    },
+    {
+      "id": 2,
+      "nome": "Mario Bros",
+      "email": "supermario@gmail.com"
+    },
+    {
+     "id": 3,
+      "nome": "Aluisio Vasques",
+      "email": "aluisio@gmail.com"
+    }
+  ]
+}
