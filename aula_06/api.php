@@ -26,7 +26,7 @@
                     }
                 }
 
-                if($usuario_encontrado){
+                if($achou){
                     echo json_encode($achou, JSON_PRETTY_PRINT || JSON_UNESCAPED_UNICODE);
                 }
                 else{
@@ -66,6 +66,71 @@
             echo json_encode(["mensagem" => "Usuário inserido com sucesso!:D ", "usuarios" => $usuarios], JSON_UNESCAPED_UNICODE);
 
             break;
+            case 'PUT':
+                // Atualizar um usuário existente
+                $dados = json_decode(file_get_contents('php://input'), true);
+    
+                if (!isset($_GET['id'])) {
+                    http_response_code(400);
+                    echo json_encode(["erro" => "ID não informado"], JSON_UNESCAPED_UNICODE);
+                    exit;
+                }
+    
+                $id = intval($_GET['id']);
+                $usuarioAtualizado = null;
+    
+                foreach ($usuarios as $index => $usuario) {
+                    if ($usuario['id'] === $id) {
+                        if (isset($dados['nome'])) {
+                            $usuarios[$index]['nome'] = $dados['nome'];
+                        }
+                        if (isset($dados['email'])) {
+                            $usuarios[$index]['email'] = $dados['email'];
+                        }
+                        $usuarioAtualizado = $usuarios[$index];
+                        break;
+                    }
+                }
+    
+                if ($usuarioAtualizado) {
+                    file_put_contents($arquivo, json_encode($usuarios, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+                    echo json_encode(["mensagem" => "Usuário atualizado com sucesso", "usuario" => $usuarioAtualizado], JSON_UNESCAPED_UNICODE);
+                } else {
+                    http_response_code(404);
+                    echo json_encode(["erro" => "Usuário não encontrado"], JSON_UNESCAPED_UNICODE);
+                }
+    
+                break;
+                case 'DELETE':
+                    // Remover um usuário pelo ID
+                    if (!isset($_GET['id'])) {
+                        http_response_code(400);
+                        echo json_encode(["erro" => "ID não informado"], JSON_UNESCAPED_UNICODE);
+                        exit;
+                    }
+        
+                    $id = intval($_GET['id']);
+                    $encontrado = false;
+        
+                    foreach ($usuarios as $index => $usuario) {
+                        if ($usuario['id'] === $id) {
+                            unset($usuarios[$index]);
+                            $usuarios = array_values($usuarios); // Reorganiza os índices
+                            $encontrado = true;
+                            break;
+                        }
+                    }
+        
+                    if ($encontrado) {
+                        file_put_contents($arquivo, json_encode($usuarios, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+                        echo json_encode(["mensagem" => "Usuário deletado com sucesso"], JSON_UNESCAPED_UNICODE);
+                    } else {
+                        http_response_code(404);
+                        echo json_encode(["erro" => "Usuário não encontrado"], JSON_UNESCAPED_UNICODE);
+                    }
+        
+                    break;
+            
         default:
             http_response_code(405);
             echo json_encode(["erro" => "Método invalido"], JSON_UNESCAPED_UNICODE);
