@@ -1,0 +1,90 @@
+body {
+    background-color: #5a2d7f; /* Roxo escuro */
+    color: white; /* Texto branco para contraste */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    color: #fff;
+    margin-top: 50px;
+    font-size: 36px;
+}
+
+/* Formulário */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #7f3fa0; /* Roxo intermediário */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #f4e1f7; /* Roxo claro */
+    color: #4b006e; /* Roxo escuro para o texto */
+}
+
+button {
+    background-color: #a54ad1; /* Roxo mais claro */
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #9c3dc1; /* Roxo mais escuro ao passar o mouse */
+}
+
+/* Resultados */
+h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.erro {
+    color: #ffcc00; /* Amarelo para destacar erro */
+}
+
+/* Adicionando um pequeno efeito no carregamento */
+form, h2, p {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Efeito de fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
